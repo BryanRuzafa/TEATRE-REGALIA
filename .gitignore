@@ -1,0 +1,36 @@
+# Repositoris del Projecte (Node & PHP)
+node_modules/
+vendor/
+.output/
+.nuxt/
+dist/
+build/
+
+# Entorn i Privacitat
+.env
+.env.local
+.env.*.local
+storage/*.key
+database/*.sqlite
+database/*.sqlite-journal
+
+# Logs i Temporals
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# Laravel Specific
+/backend/public/storage
+/backend/public/hot
+/backend/storage/*.key
+/backend/vendor
+
+# Nuxt Specific
+/frontend/node_modules
+/frontend/.nuxt
+/frontend/.output

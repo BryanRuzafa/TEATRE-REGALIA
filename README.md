@@ -113,6 +113,12 @@ cd frontend && npm install && npm run dev
 
 El panel de administración está en `/admin`. Guía detallada (en catalán): [`doc/instalacio.md`](doc/instalacio.md).
 
+**Tests del backend** (PHPUnit, SQLite en memoria): reservar una butaca libre, rechazo con `409` si ya está reservada o vendida, liberación de la reserva y compra solo por el cliente que la tiene reservada:
+
+```bash
+cd backend && php artisan test
+```
+
 **Tests del frontend** (Vitest, lógica del store de butacas en Pinia):
 
 ```bash
@@ -130,6 +136,7 @@ El TR se centraba en la concurrencia en tiempo real. Antes de llevarlo a producc
 | La identidad del cliente en el socket la envía el propio cliente | Sesión firmada (JWT) validada en el *handshake* de Socket.IO |
 | CORS abierto (`*`) en el servidor realtime | Lista blanca con el dominio del frontend |
 | El estado de las reservas vive en la memoria de un único proceso | **Redis** + `@socket.io/redis-adapter` para escalar a varias instancias sin perder reservas en un reinicio |
+| `/api/venda/confirmar` no comprueba en la BD si la reserva ha caducado (depende del temporizador del servidor realtime) | Filtrar por `temps_bloqueig_finalitza > now()` y añadir un test que lo cubra |
 | Sin límite de peticiones | *Rate limiting* en la API y en los eventos del socket |
 
 ## 📁 Estructura
